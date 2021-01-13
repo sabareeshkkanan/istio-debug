@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '3'
+version = '4'
 sourceCompatibility = '11'
 
 repositories {
@@ -53,8 +53,8 @@ task unpack(type: Copy) {
 	into("build/dependency")
 }
 docker {
-	project.group = "example.io"
-	name "${project.group}/${bootJar.baseName}:${version}"
+	project.group = "guidedchoice"
+	name "${project.group}/istio-debug:${version}"
 	copySpec.from(tasks.unpack.outputs).into("dependency")
 	buildArgs(['DEPENDENCY': "dependency",'MAINCLASS_ARG':"${springBoot.mainClassName}"])
 }

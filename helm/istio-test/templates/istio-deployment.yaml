@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+
+  labels:
+    app.kubernetes.io/name: istio-test
+  name: istio-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: istio-test
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.guidedchoice.network/core: "true"
+        app.kubernetes.io/name: istio-test
+        app: istio-test
+        version: "{{.Values.istio.tag}}"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+      containers:
+      - env:
+          - name: JAVA_OPTS
+            value: {{.Values.global.env.JAVA_OPTS}}
+        image: "{{ .Values.istio.repository }}:{{ .Values.istio.tag}}"
+        imagePullPolicy: {{ .Values.istio.pullPolicy }}
+        name: istio-test
+        ports:
+          - containerPort:{{ .Values.global.service.port }}
+          - containerPort:{{ .Values.global.service.actuatorPort }}
+        resources:
+          limits:
+            memory: "1000Mi"
+          requests:
+            memory: "500Mi"
+      restartPolicy: Always
+
+
+

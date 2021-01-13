@@ -1,0 +1,12 @@
+istio:
+  repository: guidedchoice/istio-debug
+  pullPolicy: Always
+  tag: 4
+replicaCount: 1
+global:
+  env:
+    JAVA_OPTS: -Xms500m -Xmx1024m
+  service:
+    type: ClusterIP
+    port: 8080
+    actuatorPort: 8081
