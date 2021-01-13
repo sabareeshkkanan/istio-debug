@@ -4,7 +4,7 @@ Steps to recreate the issue
 
 Environment 
 
-Azure AKS
+Azure AKS, you can use any kubernetes environment
 Install Istio following this guide with default setup process. https://istio.io/latest/docs/setup/install/
 ```
 istioctl install --set profile=default
