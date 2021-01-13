@@ -53,7 +53,7 @@ task unpack(type: Copy) {
 	into("build/dependency")
 }
 docker {
-	project.group = "guided.azurecr.io"
+	project.group = "example.io"
 	name "${project.group}/${bootJar.baseName}:${version}"
 	copySpec.from(tasks.unpack.outputs).into("dependency")
 	buildArgs(['DEPENDENCY': "dependency",'MAINCLASS_ARG':"${springBoot.mainClassName}"])
