@@ -24,3 +24,4 @@ helm install test -n test ./helm/istio-test
 Please update image as need when you rebuild the project
 
 Assumption you have service registry available at http://service-registry:8761
+or you can disable discovery client and use ip address to test actuator endpoint as http://{{ip}}:8081/actuator
